@@ -1,0 +1,106 @@
+<div class="row" style="margin: 25px;">
+
+    <div class="col-md-5">
+        <div class="mat-elevation-z8" style="padding: 10px;">
+            <table mat-table [dataSource]="dataSource" matSort>
+    
+              <!-- Name Column -->
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                <td mat-cell *matCellDef="let row"> 
+                    <button mat-icon-button>
+                        <mat-icon>question_answer</mat-icon>
+                      </button>
+                    {{row.fullName}} 
+                </td>
+              </ng-container>
+          
+
+              <!-- Progress Column -->
+              <ng-container matColumnDef="desc">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Submitted On </th>
+                <td mat-cell *matCellDef="let row"> {{row?.createdOn | date }} </td>
+              </ng-container>
+          
+
+              <!-- Fruit Column -->
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> 
+                </th>
+                <td mat-cell *matCellDef="let row"> 
+                    <button mat-icon-button matTooltip="{{row | json}}">
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+                </td>
+              </ng-container>
+          
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>          
+        </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="row">
+        <div class="col-md-4">
+          <mat-card *ngIf="employeeSurveyResponse">
+            <mat-card-subtitle>Overall Satisfaction</mat-card-subtitle>
+            <mat-card-content>
+              Very satisfied : {{employeeSurveyResponse?.additionalData?.OVERALL_SATISFACTION?.VerySatisfied / employeeSurveyResponse?.employeeSurveys.length * 100 | number}} % <br />
+              Satisfied : {{employeeSurveyResponse?.additionalData?.OVERALL_SATISFACTION?.Satisfied / employeeSurveyResponse?.employeeSurveys.length * 100 | number}} % <br />
+              Dissatisfied : {{employeeSurveyResponse?.additionalData?.OVERALL_SATISFACTION?.Dissatisfied / employeeSurveyResponse?.employeeSurveys.length * 100 | number}} % <br />
+              Very dissatisfied : {{employeeSurveyResponse?.additionalData?.OVERALL_SATISFACTION?.VeryDissatisfied / employeeSurveyResponse?.employeeSurveys.length * 100 | number}} % <br />
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div class="col-md-4">
+          <mat-card *ngIf="employeeSurveyResponse">
+            <mat-card-subtitle>Resources availability</mat-card-subtitle>
+            <mat-card-content>
+              In overall
+              <button mat-button color="warn">
+                {{employeeSurveyResponse?.additionalData?.RESOURCE_AVAILABILITY?.No / employeeSurveyResponse?.employeeSurveys.length * 100 | number}} %
+              </button> employees are unhappy with resources unavailability to increate
+              productivity
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div class="col-md-4">
+          <mat-card *ngIf="employeeSurveyResponse">
+            <mat-card-subtitle>Work Culture</mat-card-subtitle>
+            <mat-card-content>
+              Very satisfied : {{employeeSurveyResponse?.additionalData?.WORK_CULTURE?.VerySatisfied / employeeSurveyResponse?.employeeSurveys.length * 100 | number}} % <br />
+              Satisfied : {{employeeSurveyResponse?.additionalData?.WORK_CULTURE?.Satisfied / employeeSurveyResponse?.employeeSurveys.length * 100 | number}} % <br />
+              Dissatisfied : {{employeeSurveyResponse?.additionalData?.WORK_CULTURE?.Dissatisfied / employeeSurveyResponse?.employeeSurveys.length * 100 | number}} % <br />
+              Very dissatisfied : {{employeeSurveyResponse?.additionalData?.WORK_CULTURE?.VeryDissatisfied / employeeSurveyResponse?.employeeSurveys.length * 100 | number}} % <br />
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 25px;">
+        <div class="col-md-4">
+          <mat-card *ngIf="employeeSurveyResponse">
+            <mat-card-subtitle>Task & Responsibilities clarity</mat-card-subtitle>
+            <mat-card-content>
+              No clarity : {{employeeSurveyResponse?.additionalData?.RESPONSIBILITY_CLARITY?.NoClarity / employeeSurveyResponse?.employeeSurveys.length * 100 | number}} % <br />
+              Somewhat clarity : {{employeeSurveyResponse?.additionalData?.RESPONSIBILITY_CLARITY?.SomewhatClarity / employeeSurveyResponse?.employeeSurveys.length * 100 | number}} % <br />
+              Good : {{employeeSurveyResponse?.additionalData?.RESPONSIBILITY_CLARITY?.Good / employeeSurveyResponse?.employeeSurveys.length * 100 | number}} % <br />
+              Full clarity : {{employeeSurveyResponse?.additionalData?.RESPONSIBILITY_CLARITY?.VeryMuchClarity / employeeSurveyResponse?.employeeSurveys.length * 100 | number}} % <br />
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div class="col-md-4">
+          <mat-card *ngIf="employeeSurveyResponse">
+            <mat-card-subtitle>Tea/Coffee Quality Check</mat-card-subtitle>
+            <mat-card-content>
+              Very happy : {{employeeSurveyResponse?.additionalData?.TEA_QUALITY?.VeryHappy / employeeSurveyResponse?.employeeSurveys.length * 100 | number}} % <br />
+              Happy : {{employeeSurveyResponse?.additionalData?.TEA_QUALITY?.Happy / employeeSurveyResponse?.employeeSurveys.length * 100 | number}} % <br />
+              Not happy : {{employeeSurveyResponse?.additionalData?.TEA_QUALITY?.NotHappy / employeeSurveyResponse?.employeeSurveys.length * 100 | number}} % <br />
+              Not at all happy : {{employeeSurveyResponse?.additionalData?.TEA_QUALITY?.NotAllHappy / employeeSurveyResponse?.employeeSurveys.length * 100 | number}} % <br />
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+</div>

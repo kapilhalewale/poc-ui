@@ -1,0 +1,22 @@
+html, body { height: 100% !important;
+    position: relative;
+}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
+    min-height: 100% !important;
+}
+
+.mat-horizontal-stepper-header {
+    height: 46px !important;
+}
+.mat-vertical-stepper-header {
+    height: 10px !important;
+}
+
+table, .fullWidth{
+    width: 100%;
+}
+
+.chipClass{
+    background: #3f51b5 !important;
+    color: white !important;
+}

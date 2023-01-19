@@ -1,0 +1,21 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+    <button mat-icon-button class="example-icon">
+        <mat-icon>badge</mat-icon>
+    </button>
+    <span>{{apnName}}</span><br />
+    <span class="spacer"></span>
+</mat-toolbar>
+<mat-toolbar style="margin-top: 10px;height: 40px !important;">
+    <button mat-button *ngFor="let link of navLinks" color="primary" routerLink="{{link?.href}}">
+        <mat-icon>{{link?.icon}}</mat-icon> {{link?.name}}
+    </button>
+    <span class="spacer"></span>
+</mat-toolbar>
+<div class="container-fluid" style="height: 100% !important;">
+    <router-outlet></router-outlet>
+</div>
+<mat-toolbar style="margin-top: 10px;height: 40px !important;overflow: hidden;position: absolute !important;left: 0;">
+    <button mat-button color="primary">
+        POC :: By Kapil Kumar
+    </button>
+</mat-toolbar>

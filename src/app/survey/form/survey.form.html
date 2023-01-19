@@ -1,0 +1,224 @@
+<div class="row" style="margin: 25px;">
+    <div class="col-md-8">
+        <mat-card style="padding: 0px;" class="mat-elevation-z8">
+            <mat-card-content>
+                <mat-stepper orientation="vertical">
+                    <form [formGroup]="feedbackFormGroup">
+                        <mat-step>
+                            <ng-template matStepLabel>Basic Details</ng-template>
+                            <ng-template matStepContent>
+                                <div class="row" style="margin-top: 15px;margin-left: 7px;">
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Full Name</mat-label>
+                                            <input formControlName="fullName" matInput placeholder="Ex. Jhony Depp">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Emaill Address</mat-label>
+                                            <input formControlName="emailAddress" matInput
+                                            (change)="emailAddressChangeEvent()" placeholder="Ex. jhonydepp@gmail.com">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 45px;">
+                                    <div class="col-md-12">
+                                        <button mat-button matStepperNext>Next Question</button>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </mat-step>
+                        <mat-step>
+                            <ng-template matStepLabel>Do you have the resources you need to perform your job
+                                well?</ng-template>
+                            <ng-template matStepContent>
+                                <div class="row" style="margin-top: 15px;margin-left: 7px;">
+                                    <div class="col-md-12">
+                                        <mat-radio-group formControlName="resourceAvailability"
+                                            aria-label="Select an option">
+                                            <mat-radio-button value="Yes">Yes</mat-radio-button>&nbsp;&nbsp;
+                                            <mat-radio-button value="No">No</mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 45px;">
+                                    <div class="col-md-12">
+                                        <button mat-button matStepperPrevious>Previous Qustion</button>
+                                        <button mat-button matStepperNext>Next Question</button>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </mat-step>
+                        <mat-step>
+                            <ng-template matStepLabel>Your manager able to delegate responsibilities or tasks
+                                properly?(1-10 scale)?</ng-template>
+                            <ng-template matStepContent>
+                                <div class="row" style="margin-top: 15px;margin-left: 7px;">
+                                    <div class="col-md-12">
+                                        <mat-slider formControlName="responsibilityClarity" max="100" min="0" step="25" 
+                                        showTickMarks discrete  style="width:100%">
+                                        </mat-slider>
+                                        <label class="example-value-label">{{feedbackFormGroup?.value?.responsibilityClarity}}</label> %
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 45px;">
+                                    <div class="col-md-12">
+                                        <button mat-button matStepperPrevious>Previous Qustion</button>
+                                        <button mat-button matStepperNext>Next Question</button>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </mat-step>
+                        <mat-step>
+                            <ng-template matStepLabel>Are you satisfied with work environment & culture?</ng-template>
+                            <ng-template matStepContent>
+                                <div class="row" style="margin-top: 15px;margin-left: 7px;">
+                                    <div class="col-md-12">
+                                        <mat-chip-list>
+                                            <mat-chip [ngClass]="{'chipClass': chipValue === 'Satisfied'}" (click)="setChipValue('Satisfied','workCulture')"><mat-icon>add</mat-icon> Satisfied</mat-chip>
+                                            <mat-chip [ngClass]="{'chipClass': chipValue === 'Very Satisfied'}" (click)="setChipValue('Very Satisfied','workCulture')"><mat-icon>add</mat-icon> Very Satisfied</mat-chip>
+                                            <mat-chip [ngClass]="{'chipClass': chipValue === 'Dissatisfied'}" (click)="setChipValue('Dissatisfied','workCulture')"><mat-icon>add</mat-icon> Dissatisfied</mat-chip>
+                                            <mat-chip [ngClass]="{'chipClass': chipValue === 'Very Dissatisfied'}" (click)="setChipValue('Very Dissatisfied','workCulture')"><mat-icon>add</mat-icon> Very Dissatisfied</mat-chip>
+                                          </mat-chip-list>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 45px;">
+                                    <div class="col-md-12">
+                                        <button mat-button matStepperPrevious>Previous Qustion</button>
+                                        <button mat-button matStepperNext>Next Question</button>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </mat-step>
+                        <mat-step>
+                            <ng-template matStepLabel>Are you happy with the quality of tea or coffee from cafeteria?</ng-template>
+                            <ng-template matStepContent>
+                                <div class="row" style="margin-top: 15px;margin-left: 7px;">
+                                    <div class="col-md-12">
+                                        <mat-chip-list>
+                                            <mat-chip [ngClass]="{'chipClass': teaQuality === 'Happy'}" (click)="setChipValue('Happy','teaQuality')"><mat-icon>add</mat-icon> Happy</mat-chip>
+                                            <mat-chip [ngClass]="{'chipClass': teaQuality === 'Very Happy'}" (click)="setChipValue('Very Happy','teaQuality')"><mat-icon>add</mat-icon> Very Happy</mat-chip>
+                                            <mat-chip [ngClass]="{'chipClass': teaQuality === 'Not Happy'}" (click)="setChipValue('Not Happy','teaQuality')"><mat-icon>add</mat-icon> Not Happy</mat-chip>
+                                            <mat-chip [ngClass]="{'chipClass': teaQuality === 'Not All Happy'}" (click)="setChipValue('Not All Happy','teaQuality')"><mat-icon>add</mat-icon> Not All Happy</mat-chip>
+                                          </mat-chip-list>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 45px;">
+                                    <div class="col-md-12">
+                                        <button mat-button matStepperPrevious>Previous Qustion</button>
+                                        <button mat-button matStepperNext>Next Question</button>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </mat-step>
+                        <mat-step>
+                            <ng-template matStepLabel>How would you describe your overall level of job satisfaction?</ng-template>
+                            <ng-template matStepContent>
+                                <div class="row" style="margin-top: 15px;margin-left: 7px;">
+                                    <div class="col-md-12">
+                                        <mat-chip-list>
+                                            <mat-chip [ngClass]="{'chipClass': overallSatisfaction === 'Satisfied'}" (click)="setChipValue('Satisfied','overallSatisfaction')"><mat-icon>add</mat-icon> Satisfied</mat-chip>
+                                            <mat-chip [ngClass]="{'chipClass': overallSatisfaction === 'Very Satisfied'}" (click)="setChipValue('Very Satisfied','overallSatisfaction')"><mat-icon>add</mat-icon> Very Satisfied</mat-chip>
+                                            <mat-chip [ngClass]="{'chipClass': overallSatisfaction === 'Dissatisfied'}" (click)="setChipValue('Dissatisfied','overallSatisfaction')"><mat-icon>add</mat-icon> Dissatisfied</mat-chip>
+                                            <mat-chip [ngClass]="{'chipClass': overallSatisfaction === 'Very Dissatisfied'}" (click)="setChipValue('Very Dissatisfied','overallSatisfaction')"><mat-icon>add</mat-icon> Very Dissatisfied</mat-chip>
+                                          </mat-chip-list>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 45px;">
+                                    <div class="col-md-12">
+                                        <button mat-button matStepperPrevious>Previous Qustion</button>
+                                        <button mat-button matStepperNext>Next Question</button>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </mat-step>
+                        <mat-step>
+                            <ng-template matStepLabel>Submit Feedback</ng-template>
+                            <div class="row" style="margin-top: 15px;margin-left: 7px;">
+                                <div class="col-md-12">
+                                    <p>Briefly summerise the feedback</p>
+                                        <mat-form-field class="fullWidth" appearance="fill">
+                                            <mat-label>Please provide comment briefly?</mat-label>
+                                            <textarea matInput #whyJoin formControlName="briefComment" maxlength="250" placeholder=""></textarea>
+                                            <mat-hint align="start">
+                                                Ex. Whatever comes in your mind
+                                            </mat-hint>
+                                            <mat-hint align="end">{{whyJoin?.value?.length}}/250</mat-hint>
+                    
+                                        </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 45px;" *ngIf="!employeeSurveyDataExist">
+                                <div class="col-md-12">
+                                    <button  mat-stroked-button color="primary" [disabled]="!feedbackFormGroup.valid" (click)="submitEmployeeSurvey()">Submit Employee Satisfaction Survey</button>
+                                </div>
+                            </div>
+
+                        </mat-step>
+                    </form>
+                </mat-stepper>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col-md-4" *ngIf="feedbackFormGroup.value.fullName">
+        <label>Preview</label>
+        <div class="row">
+            <div class="col-md-6">
+                <mat-card *ngIf="feedbackFormGroup.value?.fullName" style="margin-top: 5px;padding: 5px;">
+                    <mat-card-header>
+                      <mat-card-title>{{feedbackFormGroup.value?.fullName}}</mat-card-title>
+                      <mat-card-subtitle>{{feedbackFormGroup.value?.emailAddress}}</mat-card-subtitle>
+                    </mat-card-header>           
+                </mat-card>
+            </div>
+            <div class="col-md-6">
+                <mat-card style="margin-top: 5px;padding: 5px;" *ngIf="feedbackFormGroup.value?.resourceAvailability">
+                    <mat-card-header>
+                        <mat-card-subtitle>Enough resources or documentation to increase productivity?</mat-card-subtitle>
+                      <mat-card-title>{{feedbackFormGroup.value?.resourceAvailability}}</mat-card-title>
+                    </mat-card-header>           
+                </mat-card>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <mat-card style="margin-top: 5px;padding: 5px;" *ngIf="feedbackFormGroup.value?.responsibilityClarity">
+                    <mat-card-header>
+                        <mat-card-subtitle>Your manager able to delegate responsibilities or tasks properly (1-10 scale)?</mat-card-subtitle>
+                      <mat-card-title>{{feedbackFormGroup.value?.responsibilityClarity}}</mat-card-title>
+                    </mat-card-header>           
+                </mat-card>
+            </div>
+
+            <div class="col-md-6">
+                <mat-card style="margin-top: 5px;padding: 5px;" *ngIf="feedbackFormGroup.value?.workCulture">
+                    <mat-card-header>
+                        <mat-card-subtitle>Are you satisfied with work environment & culture?</mat-card-subtitle>
+                      <mat-card-title>{{feedbackFormGroup.value?.workCulture}}</mat-card-title>
+                    </mat-card-header>           
+                </mat-card>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <mat-card style="margin-top: 5px;padding: 5px;" *ngIf="feedbackFormGroup.value?.teaQuality">
+                    <mat-card-header>
+                        <mat-card-subtitle>Are you happy with the quality of tea or coffee from cafeteria?</mat-card-subtitle>
+                      <mat-card-title>{{feedbackFormGroup.value?.teaQuality}}</mat-card-title>
+                    </mat-card-header>           
+                </mat-card>
+            </div>
+
+            <div class="col-md-6">
+                <mat-card style="margin-top: 5px;padding: 5px;" *ngIf="feedbackFormGroup.value?.overallSatisfaction">
+                     <mat-card-header>
+                         <mat-card-subtitle>How would you describe your overall level of job satisfaction?</mat-card-subtitle>
+                       <mat-card-title>{{feedbackFormGroup.value?.overallSatisfaction}}</mat-card-title>
+                     </mat-card-header>           
+                 </mat-card>
+            </div>
+        </div>
+
+    </div>
+</div>
